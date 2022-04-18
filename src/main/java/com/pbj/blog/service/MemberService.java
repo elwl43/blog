@@ -1,9 +1,11 @@
 package com.pbj.blog.service;
 
+import com.pbj.blog.config.Role;
 import com.pbj.blog.dao.MemberRepository;
 import com.pbj.blog.domain.Member;
 import com.pbj.blog.dto.MemberSaveForm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,21 +13,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MemberService {
-
     private final MemberRepository memberRepository;
-
     @Transactional
     public void save(MemberSaveForm memberSaveForm) {
 
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
         Member member = Member.createMember(
                 memberSaveForm.getLoginId(),
-                memberSaveForm.getLoginPw(),
+                bCryptPasswordEncoder.encode(memberSaveForm.getLoginPw()),
                 memberSaveForm.getName(),
                 memberSaveForm.getNickname(),
-                memberSaveForm.getEmail()
+                memberSaveForm.getEmail(),
+                Role.MEMBER
         );
 
         memberRepository.save(member);
-
     }
 }

@@ -40,7 +40,7 @@ public class Member implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role authority;
 
-    public static Member createMember(String loginId, String loginPw, String name, String nickname, String email){
+    public static Member createMember(String loginId, String loginPw, String name, String nickname, String email, Role authority){
 
         Member member = new Member();
 
@@ -49,6 +49,7 @@ public class Member implements UserDetails {
         member.name = name;
         member.nickname = nickname;
         member.email = email;
+        member.authority = authority;
 
         return member;
     }
