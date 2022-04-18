@@ -20,7 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorize -> authorize
-                        .mvcMatchers("/").anonymous()
+                        .mvcMatchers("/members/join").anonymous()
+                        .mvcMatchers("/").permitAll()
                 )
                 .formLogin()
                     .loginPage("/")
