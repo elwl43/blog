@@ -22,11 +22,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorize -> authorize
-                        .mvcMatchers("/members/join").anonymous()
-                        .mvcMatchers("/").permitAll()
+                        .mvcMatchers("/members/join",
+                                "/members/login"
+                        ).anonymous()
+                        .mvcMatchers("/"
+                        ).permitAll()
                 )
                 .formLogin()
-                .loginPage("/")
+                .loginPage("/members/login")
                 .loginProcessingUrl("/members/doLogin")
                 .usernameParameter("loginId")
                 .passwordParameter("loginPw")

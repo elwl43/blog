@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<body>
+
+<div class="">
+    <div class="">
+        <form th:action="@{~/members/doLogin}" method="post">
+
+            <div class="">
+                <span>아이디</span>
+                <input type="text" name="loginId" required autocomplete="off">
+            </div>
+
+            <div class="">
+                <span>비밀번호</span>
+                <input type="password" name="loginPw" required autocomplete="off">
+            </div>
+
+            <div class="">
+                <button>로그인</button>
+                <a href="/">
+                    <button type="button">취소</button>
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
