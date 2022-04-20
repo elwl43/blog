@@ -35,18 +35,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("loginPw")
                 .defaultSuccessUrl("/")
                 .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
-                .logoutUrl("/")
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID")
-                .clearAuthentication(true)
+                    .logout()
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .clearAuthentication(true)
                 .and()
-                .sessionManagement()
-                .invalidSessionUrl("/")
-                .maximumSessions(1)
-                . maxSessionsPreventsLogin(true)
-                .expiredUrl("/");
+                    .sessionManagement()
+                        .invalidSessionUrl("/")
+                        .maximumSessions(1)
+                        . maxSessionsPreventsLogin(true)
+                        .expiredUrl("/");
     }
     @Bean
     public PasswordEncoder passwordEncoder(){
