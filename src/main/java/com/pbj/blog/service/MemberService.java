@@ -9,6 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -29,5 +31,16 @@ public class MemberService {
         );
 
         memberRepository.save(member);
+    }
+
+    public Member findByLoginId(String loginId) throws IllegalStateException{
+
+        Optional<Member> memberOptional = memberRepository.findByLoginId(loginId);
+
+        memberOptional.orElseThrow(
+                () -> new IllegalStateException("존재하지 않는 회원입니다.")
+        );
+
+        return memberOptional.get();
     }
 }
