@@ -58,6 +58,14 @@ public class Member implements UserDetails {
         return member;
     }
 
+    public void modifyMember(String loginPw, String nickname, String email){
+
+        this.loginPw = loginPw;
+        this.nickname = nickname;
+        this.email = email;
+
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 

@@ -1,11 +1,17 @@
 package com.pbj.blog.controller;
 
+import com.pbj.blog.domain.Member;
 import com.pbj.blog.dto.MemberSaveForm;
+import com.pbj.blog.dto.member.MemberModifyForm;
 import com.pbj.blog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
@@ -33,6 +39,30 @@ public class MemberController {
     @GetMapping("/members/login")
     public String showLogin(){
         return "usr/member/login";
+    }
+
+    @GetMapping("/members/modify/{loginId}")
+    public String showModify(@PathVariable(name = "loginId") String loginId, Principal principal, Model model){
+
+        Member findMember = memberService.findByLoginId(loginId);
+
+        if(!findMember.getLoginId().equals(principal.getName())){
+            return "redirect:/";
+        }
+
+        model.addAttribute("memberModifyForm", new MemberModifyForm(findMember));
+        model.addAttribute("loginId", loginId);
+
+        return "usr/member/modify";
+    }
+
+    @PostMapping("/members/modify/{loginId}")
+    public String doModify(@PathVariable(name = "loginId") String loginId, MemberModifyForm memberModifyForm){
+
+        memberService.modifyMember(memberModifyForm, loginId);
+
+        return "redirect:/";
+
     }
 
 }
