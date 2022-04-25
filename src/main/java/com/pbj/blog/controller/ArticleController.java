@@ -24,7 +24,7 @@ public class ArticleController {
         return "usr/article/write";
     }
 
-    @PostMapping("/article/write")
+    @PostMapping("/articles/write")
     public String doWrite(ArticleSaveForm articleSaveForm, Principal principal, Model model){
 
         try {
