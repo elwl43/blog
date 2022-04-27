@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 리스트</title>
+</head>
+<body>
+
+<div class="">
+  <div class="">
+
+    <h1>게시글 리스트</h1>
+
+    <table>
+
+      <thead>
+      <tr>
+        <th>게시글 제목</th>
+        <th>게시글 작성자</th>
+        <th>게시글 작성일</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr th:each="article : ${articles}">
+        <td>
+          <span th:text="${article.title}"></span>
+        </td>
+        <td>
+          <span th:text="${article.nickname}"></span>
+        </td>
+        <td>
+          <span th:text="${article.regDate}"></span>
+        </td>
+      </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+</div>
+
+</body>
+</html>

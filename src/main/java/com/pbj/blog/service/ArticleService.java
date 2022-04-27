@@ -3,12 +3,15 @@ package com.pbj.blog.service;
 import com.pbj.blog.dao.ArticleRepository;
 import com.pbj.blog.domain.Article;
 import com.pbj.blog.domain.Member;
+import com.pbj.blog.dto.article.ArticleListDTO;
 import com.pbj.blog.dto.article.ArticleModifyForm;
 import com.pbj.blog.dto.article.ArticleSaveForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -52,6 +55,22 @@ public class ArticleService {
                 articleModifyForm.getTitle(),
                 articleModifyForm.getBody()
         );
+
+    }
+
+    public List<ArticleListDTO> getArticleList() {
+
+        List<Article> articleList = articleRepository.findAll();
+
+        List<ArticleListDTO> articleDTOList = new ArrayList<>();
+
+        for (Article article : articleList){
+
+            ArticleListDTO articleDTO = new ArticleListDTO(article);
+            articleDTOList.add(articleDTO);
+
+        }
+        return articleDTOList;
 
     }
 }

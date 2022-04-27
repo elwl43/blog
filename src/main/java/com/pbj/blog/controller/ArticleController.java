@@ -2,6 +2,7 @@ package com.pbj.blog.controller;
 
 import com.pbj.blog.domain.Article;
 import com.pbj.blog.domain.Member;
+import com.pbj.blog.dto.article.ArticleListDTO;
 import com.pbj.blog.dto.article.ArticleModifyForm;
 import com.pbj.blog.dto.article.ArticleSaveForm;
 import com.pbj.blog.service.ArticleService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -67,6 +69,15 @@ public class ArticleController {
 
         return "redirect:/";
 
+    }
+
+    @GetMapping("/articles")
+    public String showList(Model model){
+        List<ArticleListDTO> articles = articleService.getArticleList();
+
+        model.addAttribute("articles", articles);
+
+        return "usr/article/list";
     }
 
 }
