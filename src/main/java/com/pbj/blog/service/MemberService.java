@@ -38,6 +38,7 @@ public class MemberService implements UserDetailsService {
         memberRepository.save(member);
     }
 
+    // members/modify/bb
     public Member findByLoginId(String loginId) throws IllegalStateException{
 
         Optional<Member> memberOptional = memberRepository.findByLoginId(loginId);
