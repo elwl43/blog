@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>인덱스 페이지</title>
 </head>
 <body>
+<div layout:fragment="contents">
 
     <h1>인덱스 페이지입니다.</h1>
 
@@ -43,6 +46,6 @@
             <button>게시글 리스트</button>
         </a>
     </div>
-
+</div>
 </body>
 </html>
