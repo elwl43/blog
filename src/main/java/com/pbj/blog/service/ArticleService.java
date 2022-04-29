@@ -84,4 +84,12 @@ public class ArticleService {
         return articleDTO;
 
     }
+
+    @Transactional
+    public void delete(Long id) {
+
+        Article findArticle = findById(id);
+        articleRepository.delete(findArticle);
+
+    }
 }

@@ -91,5 +91,21 @@ public class ArticleController {
         return "usr/article/detail";
     }
 
+    @GetMapping("/articles/delete/{id}")
+    public String deleteArticle(@PathVariable(name = "id") Long id, Principal principal){
+
+        // id번 게시글의 로그인 아이디 / principal
+        Article findArticle = articleService.findById(id);
+
+        if(!findArticle.getMember().getLoginId().equals(principal.getName())){
+            return "redirect:/";
+        }
+
+        articleService.delete(id);
+
+        return "redirect:/articles";
+
+    }
+
 
 }
