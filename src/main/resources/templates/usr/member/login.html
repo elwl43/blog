@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
 </head>
 <body>
-
+<div layout:fragment="contents">
 <div class="">
     <div class="">
         <form th:action="@{~/members/doLogin}" method="post">
@@ -30,6 +32,6 @@
         </form>
     </div>
 </div>
-
+</div>
 </body>
 </html>

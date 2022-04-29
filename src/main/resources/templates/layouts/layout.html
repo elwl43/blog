@@ -7,14 +7,15 @@
 
   <link href="https://cdn.jsdelivr.net/npm/daisyui@2.14.2/dist/full.css" rel="stylesheet" type="text/css" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/css/common.css">
 </head>
 <body>
 
-<header th:replace="fragments/header :: general-header"></header>
+    <header th:replace="fragments/header :: general-header"></header>
 
-<div class="" layout:fragment="contents"></div>
+    <div class="contents-body" layout:fragment="contents"></div>
 
-<footer th:replace="fragments/footer :: general-footer"></footer>
+    <footer th:replace="fragments/footer :: general-footer"></footer>
 
 </body>
 </html>

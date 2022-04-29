@@ -1,46 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="UTF-8">
     <title>인덱스 페이지</title>
 </head>
 <body>
 <div layout:fragment="contents">
-
-    <h1>인덱스 페이지입니다.</h1>
-
-    <div sec:authorize="isAnonymous()">
-        <div class="">
-            <a href="/members/join">
-                <button>회원가입</button>
-            </a>
-        </div>
-
-        <div class="">
-            <a href="/members/login">
-                <button>로그인</button>
-            </a>
-        </div>
-    </div>
-
-    <div sec:authorize="isAuthenticated()">
-        <div class="">
-            <a href="/members/logout">
-                <button>로그아웃</button>
-            </a>
-        </div>
-
-        <div class="">
-            <a href="/articles/write">
-                <button>게시글 작성</button>
-            </a>
-        </div>
-
-    </div>
-
     <div class="">
         <a href="/articles">
             <button>게시글 리스트</button>
