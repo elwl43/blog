@@ -3,6 +3,7 @@ package com.pbj.blog.service;
 import com.pbj.blog.dao.ArticleRepository;
 import com.pbj.blog.domain.Article;
 import com.pbj.blog.domain.Member;
+import com.pbj.blog.dto.article.ArticleDTO;
 import com.pbj.blog.dto.article.ArticleListDTO;
 import com.pbj.blog.dto.article.ArticleModifyForm;
 import com.pbj.blog.dto.article.ArticleSaveForm;
@@ -71,6 +72,16 @@ public class ArticleService {
 
         }
         return articleDTOList;
+
+    }
+
+    public ArticleDTO getArticle(Long id) {
+
+        Article findArticle = findById(id);
+
+        ArticleDTO articleDTO = new ArticleDTO(findArticle);
+
+        return articleDTO;
 
     }
 }

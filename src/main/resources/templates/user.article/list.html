@@ -24,13 +24,15 @@
       <tbody>
       <tr th:each="article : ${articles}">
         <td>
-          <span th:text="${article.title}"></span>
+          <a th:href="@{~/articles/} + ${article.id}">
+            <span th:text="${article.title}"></span>
+          </a>
         </td>
         <td>
           <span th:text="${article.nickname}"></span>
         </td>
         <td>
-          <span th:text="${article.regDate}"></span>
+          <span th:text="${#temporals.format(article.regDate, 'yyyy-MM-dd')}"></span>
         </td>
       </tr>
 

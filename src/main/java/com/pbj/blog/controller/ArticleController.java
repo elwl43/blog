@@ -2,6 +2,7 @@ package com.pbj.blog.controller;
 
 import com.pbj.blog.domain.Article;
 import com.pbj.blog.domain.Member;
+import com.pbj.blog.dto.article.ArticleDTO;
 import com.pbj.blog.dto.article.ArticleListDTO;
 import com.pbj.blog.dto.article.ArticleModifyForm;
 import com.pbj.blog.dto.article.ArticleSaveForm;
@@ -79,5 +80,16 @@ public class ArticleController {
 
         return "usr/article/list";
     }
+
+    @GetMapping("/articles/{id}")
+    public String showDetail(@PathVariable(name = "id") Long id, Model model){
+
+        ArticleDTO findArticle = articleService.getArticle(id);
+
+        model.addAttribute("article", findArticle);
+
+        return "usr/article/detail";
+    }
+
 
 }
