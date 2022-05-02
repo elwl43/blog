@@ -2,6 +2,7 @@ package com.pbj.blog.service;
 
 import com.pbj.blog.dao.ArticleRepository;
 import com.pbj.blog.domain.Article;
+import com.pbj.blog.domain.Category;
 import com.pbj.blog.domain.Member;
 import com.pbj.blog.dto.article.ArticleDTO;
 import com.pbj.blog.dto.article.ArticleListDTO;
@@ -24,7 +25,7 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
 
     @Transactional
-    public void save(ArticleSaveForm articleSaveForm, Member member) {
+    public void save(ArticleSaveForm articleSaveForm, Category category, Member member) {
 
         Article article = Article.createArticle(
                 articleSaveForm.getTitle(),
@@ -32,6 +33,7 @@ public class ArticleService {
         );
 
         article.setMember(member);
+        article.setCategory(category);
 
         articleRepository.save(article);
     }

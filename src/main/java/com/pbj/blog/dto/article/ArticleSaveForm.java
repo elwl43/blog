@@ -8,4 +8,7 @@ public class ArticleSaveForm {
     private String title;
 
     private String body;
+
+    private Long categoryId;
+
 }
