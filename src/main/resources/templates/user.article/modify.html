@@ -16,6 +16,13 @@
 
         <form th:action="@{~/articles/modify/} + ${id}" th:object="${articleModifyForm}" method="post">
 
+            <select class="select select-bordered w-full max-w-xs" name="categoryId" required>
+                <th:block th:each="category : ${categoryList}">
+                    <option th:if="${category.id} == ${selectedCategory}" th:value="${category.id}" th:text="${category.name}" selected></option>
+                    <option th:unless="${category.id} == ${selectedCategory}" th:value="${category.id}" th:text="${category.name}"></option>
+                </th:block>
+            </select>
+
             <div class="">
                 <span>제목</span>
                 <input type="text" name="title" th:field="*{title}">

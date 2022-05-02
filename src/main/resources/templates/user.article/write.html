@@ -15,7 +15,7 @@
 
         <form th:action="@{~/articles/write}" method="post">
 
-            <select class="select w-full max-w-xs" name="categoryId" required>
+            <select class="select select-bordered w-full max-w-xs" name="categoryId" required>
                 <th:block th:each="category : ${categoryList}">
                     <option th:value="${category.id}" th:text="${category.name}"></option>
                 </th:block>

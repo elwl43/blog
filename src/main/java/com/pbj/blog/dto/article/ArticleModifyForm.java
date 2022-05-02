@@ -14,9 +14,12 @@ public class ArticleModifyForm {
 
     private String body;
 
+    private Long categoryId;
+
     public ArticleModifyForm(Article findArticle){
         this.title = findArticle.getTitle();
         this.body = findArticle.getBody();
+        this.categoryId = findArticle.getCategory().getId();
     }
 
 }
