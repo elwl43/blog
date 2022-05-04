@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="contents">
+
+    <div class="">
+        <div class="">
+
+            <h1>카테고리 리스트</h1>
+
+            <table>
+
+                <thead>
+                <tr>카테고리</tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="category : ${categoryList}">
+                    <td>
+                        <!--                            <a href="#">-->
+                        <span th:text="${category.name}"></span>
+                        <!--                            </a>-->
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

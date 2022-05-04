@@ -2,6 +2,7 @@ package com.pbj.blog.controller;
 
 import com.pbj.blog.domain.Category;
 import com.pbj.blog.domain.Member;
+import com.pbj.blog.dto.category.CategoryModifyForm;
 import com.pbj.blog.dto.category.CategorySaveForm;
 import com.pbj.blog.service.CategoryService;
 import com.pbj.blog.service.MemberService;
@@ -60,6 +61,17 @@ public class CategoryController {
         categoryService.modifyCategory(categoryModifyForm, id);
 
         return "redirect:/";
+    }
+
+    @GetMapping("/categories")
+    public String showCategory(Model model){
+
+        List<CategoryListDTO> categoryList = categoryService.findAll();
+
+        model.addAttribute("categoryList", categoryList);
+
+        return "usr/category/list";
+
     }
 
 }
