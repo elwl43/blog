@@ -2,6 +2,7 @@ package com.pbj.blog.controller;
 
 import com.pbj.blog.domain.Category;
 import com.pbj.blog.domain.Member;
+import com.pbj.blog.dto.category.CategoryDTO;
 import com.pbj.blog.dto.category.CategoryListDTO;
 import com.pbj.blog.dto.category.CategoryModifyForm;
 import com.pbj.blog.dto.category.CategorySaveForm;
@@ -83,6 +84,7 @@ public class CategoryController {
 
         model.addAttribute("name", category.getName());
         model.addAttribute("category", category);
+        model.addAttribute("articles", category.getArticles());
 
         return "usr/category/detail";
     }

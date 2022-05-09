@@ -70,13 +70,7 @@ public class CategoryService {
 
         Category findCategory = findById(id);
 
-        List<Article> articles = findCategory.getArticles();
-
-        CategoryDTO categoryDTO = new CategoryDTO();
-
-        for(Article article : articles){
-            categoryDTO.setCategoryDTO(findCategory, article);
-        }
+        CategoryDTO categoryDTO = new CategoryDTO(findCategory);
 
         return categoryDTO;
 

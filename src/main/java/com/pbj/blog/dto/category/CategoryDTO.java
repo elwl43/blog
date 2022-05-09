@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,13 +15,13 @@ public class CategoryDTO {
 
     private Long id;
     private String name;
-    private String title;
+    private List<Article> articles;
 
-    public void setCategoryDTO(Category category, Article article){
+    public CategoryDTO(Category category){
 
         this.id = category.getId();
         this.name = category.getName();
-        this.title = article.getTitle();
+        this.articles = category.getArticles();
 
     }
 
