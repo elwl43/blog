@@ -83,10 +83,24 @@ public class CategoryController {
         CategoryDTO category = categoryService.getCategory(id);
 
         model.addAttribute("name", category.getName());
-        model.addAttribute("category", category);
         model.addAttribute("articles", category.getArticles());
 
         return "usr/category/detail";
+    }
+
+    @GetMapping("/categories/delete/{id}")
+    public String doDelete(@PathVariable(name = "id") Long id, Principal principal){
+
+        Category findCategory = categoryService.findById(id);
+
+        if(!findCategory.getMember().getLoginId().equals(principal.getName())){
+            return "redirect:/";
+        }
+
+        categoryService.delete(id);
+
+        return "redirect:/categories";
+
     }
 
 }

@@ -28,6 +28,20 @@
                                 <span th:text="${category.name}"></span>
                             </a>
                         </td>
+                        <td>
+                            <div class="">
+                                <a th:href="@{~/categories/modify/} + ${category.id}">
+                                    <span>수정</span>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="">
+                                <a th:href="@{~/categories/delete/} + ${category.id}">
+                                    <span>삭제</span>
+                                </a>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
 
