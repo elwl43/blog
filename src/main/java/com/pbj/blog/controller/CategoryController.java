@@ -2,6 +2,7 @@ package com.pbj.blog.controller;
 
 import com.pbj.blog.domain.Category;
 import com.pbj.blog.domain.Member;
+import com.pbj.blog.dto.category.CategoryListDTO;
 import com.pbj.blog.dto.category.CategoryModifyForm;
 import com.pbj.blog.dto.category.CategorySaveForm;
 import com.pbj.blog.service.CategoryService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -72,6 +74,17 @@ public class CategoryController {
 
         return "usr/category/list";
 
+    }
+
+    @GetMapping("/categories/{id}")
+    public String showDetail(@PathVariable(name = "id") Long id, Model model){
+
+        CategoryDTO category = categoryService.getCategory(id);
+
+        model.addAttribute("name", category.getName());
+        model.addAttribute("category", category);
+
+        return "usr/category/detail";
     }
 
 }

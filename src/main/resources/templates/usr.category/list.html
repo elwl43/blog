@@ -22,13 +22,13 @@
                 </thead>
 
                 <tbody>
-                <tr th:each="category : ${categoryList}">
-                    <td>
-                        <!--                            <a href="#">-->
-                        <span th:text="${category.name}"></span>
-                        <!--                            </a>-->
-                    </td>
-                </tr>
+                    <tr th:each="category : ${categoryList}">
+                        <td>
+                            <a th:href="@{~/categories/} + ${category.id}">
+                                <span th:text="${category.name}"></span>
+                            </a>
+                        </td>
+                    </tr>
                 </tbody>
 
             </table>

@@ -1,8 +1,10 @@
 package com.pbj.blog.service;
 
 import com.pbj.blog.dao.CategoryRepository;
+import com.pbj.blog.domain.Article;
 import com.pbj.blog.domain.Category;
 import com.pbj.blog.domain.Member;
+import com.pbj.blog.dto.category.CategoryDTO;
 import com.pbj.blog.dto.category.CategoryListDTO;
 import com.pbj.blog.dto.category.CategoryModifyForm;
 import com.pbj.blog.dto.category.CategorySaveForm;
@@ -61,6 +63,22 @@ public class CategoryService {
                 categoryModifyForm.getId(),
                 categoryModifyForm.getName()
         );
+
+    }
+
+    public CategoryDTO getCategory(Long id) {
+
+        Category findCategory = findById(id);
+
+        List<Article> articles = findCategory.getArticles();
+
+        CategoryDTO categoryDTO = new CategoryDTO();
+
+        for(Article article : articles){
+            categoryDTO.setCategoryDTO(findCategory, article);
+        }
+
+        return categoryDTO;
 
     }
 }
