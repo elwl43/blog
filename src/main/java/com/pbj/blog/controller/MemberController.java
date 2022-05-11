@@ -7,6 +7,8 @@ import com.pbj.blog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,12 +26,18 @@ public class MemberController {
 
     // localhost:8085/members/join
     @GetMapping("/members/join")
-    public String showJoin(){
+    public String showJoin(Model model, MemberSaveForm memberSaveForm){
+
+        model.addAttribute("memberSaveForm", memberSaveForm);
         return "usr/member/join";
     }
 
     @PostMapping("/members/join")
-    public String doJoin(MemberSaveForm memberSaveForm){
+    public String doJoin(@Validated MemberSaveForm memberSaveForm, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "usr/member/join";
+        }
 
         memberService.save(memberSaveForm);
 
@@ -57,7 +65,11 @@ public class MemberController {
     }
 
     @PostMapping("/members/modify/{loginId}")
-    public String doModify(@PathVariable(name = "loginId") String loginId, MemberModifyForm memberModifyForm){
+    public String doModify(@PathVariable(name = "loginId") String loginId, @Validated MemberModifyForm memberModifyForm, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            return "usr/member/modify";
+        }
 
         memberService.modifyMember(memberModifyForm, loginId);
 

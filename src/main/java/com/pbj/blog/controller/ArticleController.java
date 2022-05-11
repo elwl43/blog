@@ -13,6 +13,8 @@ import com.pbj.blog.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,13 +31,19 @@ public class ArticleController {
     private final CategoryService categoryService;
 
     @GetMapping("/articles/write")
-    public String showWrite(Model model){
+    public String showWrite(Model model, ArticleSaveForm articleSaveForm){
         model.addAttribute("categoryList", categoryService.findAll());
+        model.addAttribute("articleSaveForm", articleSaveForm);
+
         return "usr/article/write";
     }
 
     @PostMapping("/articles/write")
-    public String doWrite(ArticleSaveForm articleSaveForm, Principal principal, Model model){
+    public String doWrite(@Validated ArticleSaveForm articleSaveForm, BindingResult bindingResult, Principal principal, Model model){
+
+        if(bindingResult.hasErrors()){
+            return "usr/article/write";
+        }
 
         try {
             Category findCategory = categoryService.findById(articleSaveForm.getCategoryId());
@@ -73,8 +81,11 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/modify/{id}")
-    public String doModify(@PathVariable(name="id") Long id, ArticleModifyForm articleModifyForm){
+    public String doModify(@PathVariable(name="id") Long id, @Validated ArticleModifyForm articleModifyForm, BindingResult bindingResult){
 
+        if(bindingResult.hasErrors()){
+            return "usr/article/modify";
+        }
         Category findCategory = categoryService.findById(articleModifyForm.getCategoryId());
 
         articleService.modifyArticle(articleModifyForm, id, findCategory);

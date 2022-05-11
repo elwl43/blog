@@ -23,7 +23,8 @@
 
                 <div class="">
                     <span>비밀번호</span>
-                    <input type="password" name="loginPw" th:field="*{loginPw}">
+                    <input type="password" name="loginPw" th:field="*{loginPw}" th:errorclass="field-error">
+                    <span th:errors="*{loginPw}"></span>
                 </div>
 
                 <div class="">
@@ -33,12 +34,14 @@
 
                 <div class="">
                     <span>닉네임</span>
-                    <input type="text" name="nickname" th:field="*{nickname}">
+                    <input type="text" name="nickname" th:field="*{nickname}" th:errorclass="field-error">
+                    <span th:errors="*{nickname}"></span>
                 </div>
 
                 <div class="">
                     <span>이메일</span>
-                    <input type="email" name="email" th:field="*{email}">
+                    <input type="email" name="email" th:field="*{email}" th:errorclass="field-error">
+                    <span th:errors="*{email}"></span>
                 </div>
 
                 <div class="">

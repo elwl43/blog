@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="contents">
+    <div class="">
+        <div class="">
+
+                <form th:action="@{~/categories/create}" th:object="${categorySaveForm}" method="post">
+
+                    <div class="">
+                        <span>카테고리 이름</span>
+                        <input type="text" name="name" placeholder="카테고리 이름을 입력해 주세요." th:field="*{name}" th:errorclass="field-error">
+                        <span th:errors="*{name}"></span>
+                    </div>
+
+                    <div class="">
+                        <button>확인</button>
+                        <a href="/">
+                            <button>취소</button>
+                        </a>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

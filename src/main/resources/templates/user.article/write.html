@@ -13,7 +13,7 @@
 
         <h1>게시글 작성</h1>
 
-        <form th:action="@{~/articles/write}" method="post">
+        <form th:action="@{~/articles/write}" th:object="${articleSaveForm}" method="post">
 
             <select class="select select-bordered w-full max-w-xs" name="categoryId" required>
                 <th:block th:each="category : ${categoryList}">
@@ -23,12 +23,14 @@
 
             <div class="">
                 <span>제목</span>
-                <input type="text" name="title" placeholder="제목을 입력해 주세요." required>
+                <input type="text" name="title" placeholder="제목을 입력해 주세요." th:field="*{title}" th:errorclass="field-error">
+                <span th:errors="*{title}"></span>
             </div>
 
             <div class="">
                 <span>내용</span>
-                <input type="text" name="body" placeholder="내용을 입력해 주세요." required>
+                <input type="text" name="body" placeholder="내용을 입력해 주세요." th:field="*{body}" th:errorclass="field-error">
+                <span th:errors="*{body}"></span>
             </div>
 
             <div class="">
