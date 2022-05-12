@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 
 @Entity
 @Getter
@@ -28,6 +30,9 @@ public class Article {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "article")
+    private List<Reply> replies = new ArrayList<>();
 
     private LocalDateTime regDate = LocalDateTime.now();
 
