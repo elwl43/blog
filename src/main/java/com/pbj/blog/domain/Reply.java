@@ -1,5 +1,6 @@
 package com.pbj.blog.domain;
 
+import com.pbj.blog.dto.reply.ReplyModifyForm;
 import com.pbj.blog.dto.reply.ReplySaveForm;
 import lombok.Getter;
 
@@ -34,6 +35,12 @@ public class Reply {
         reply.body = replySaveForm.getBody();
 
         return reply;
+    }
+
+    public void modifyReply(ReplyModifyForm replyModifyForm){
+
+        this.body = replyModifyForm.getBody();
+
     }
 
     public void setMember(Member member){

@@ -70,7 +70,7 @@
 
                 <hr>
 
-                <form th:action="@{~/articles/} + ${article.id} + @{/reply}" method="post">
+                <form th:action="@{~/articles/} + ${article.id} + @{/replies}" method="post">
                     <div class="">
                         <span>댓글</span>
                         <input type="text" name="body" placeholder="댓글을 입력해 주세요.">
@@ -83,7 +83,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
