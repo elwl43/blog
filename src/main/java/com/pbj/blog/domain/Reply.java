@@ -1,5 +1,6 @@
 package com.pbj.blog.domain;
 
+import com.pbj.blog.dto.reply.ReplySaveForm;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -25,5 +26,24 @@ public class Reply {
 
     private LocalDateTime regDate = LocalDateTime.now();
     private LocalDateTime updateDate = LocalDateTime.now();
+
+    public static Reply createReply(ReplySaveForm replySaveForm){
+
+        Reply reply = new Reply();
+
+        reply.body = replySaveForm.getBody();
+
+        return reply;
+    }
+
+    public void setMember(Member member){
+        member.getReplies().add(this);
+        this.member = member;
+    }
+
+    public void setArticle(Article article){
+        article.getReplies().add(this);
+        this.article = article;
+    }
 
 }
