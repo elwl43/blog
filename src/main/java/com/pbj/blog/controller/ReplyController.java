@@ -10,6 +10,7 @@ import com.pbj.blog.service.MemberService;
 import com.pbj.blog.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -46,6 +47,23 @@ public class ReplyController {
         replyService.modifyReply(replyModifyForm, findReply);
 
         return "redirect:/articles/" + articleId;
+    }
+
+    @GetMapping("/articles/{article_id}/replies/{reply_id}/delete")
+    public String deleteReply(@PathVariable(name = "article_id") Long articleId, @PathVariable(name = "reply_id") Long replyId, Principal principal){
+
+        Article findArticle = articleService.findById(articleId);
+        Reply findReply = replyService.findById(replyId);
+
+        if(!findReply.getMember().getLoginId().equals(principal.getName())){
+            throw new IllegalStateException("올바른 접근이 아닙니다.");
+        }
+
+        Member findMember = memberService.findByLoginId(principal.getName());
+
+        replyService.deleteReply(findArticle, findMember, findReply);
+
+        return "redirect:/articles" + articleId;
     }
 
 }

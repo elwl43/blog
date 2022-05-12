@@ -48,4 +48,8 @@ public class ReplyService {
     public void modifyReply(ReplyModifyForm replyModifyForm, Reply findReply) {
         findReply.modifyReply(replyModifyForm);
     }
+
+    @Transactional
+    public void deleteReply(Article findArticle, Member findMember, Reply findReply) {
+    }
 }

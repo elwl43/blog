@@ -89,7 +89,7 @@
 
                 <div th:each="reply : ${replies}">
                     <span th:text="${reply.body}"></span>
-                    <span th:text="${reply.regDate}"></span>
+                    <span th:text="${#temporals.format(reply.regDate, 'yyyy-MM-dd')}"></span>
                 </div>
 
             </div>
