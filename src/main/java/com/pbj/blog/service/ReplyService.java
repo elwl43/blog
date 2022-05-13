@@ -51,5 +51,9 @@ public class ReplyService {
 
     @Transactional
     public void deleteReply(Article findArticle, Member findMember, Reply findReply) {
+        findArticle.getReplies().remove(findReply);
+        findMember.getReplies().remove(findReply);
+
+        replyRepository.delete(findReply);
     }
 }

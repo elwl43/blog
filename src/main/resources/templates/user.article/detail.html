@@ -90,6 +90,12 @@
                 <div th:each="reply : ${replies}">
                     <span th:text="${reply.body}"></span>
                     <span th:text="${#temporals.format(reply.regDate, 'yyyy-MM-dd')}"></span>
+
+                    <div class="">
+                        <a th:href="@{~/articles/}+${article.id}+@{/replies/}+${reply.id}+@{/delete}">
+                            <button>삭제</button>
+                        </a>
+                    </div>
                 </div>
 
             </div>
