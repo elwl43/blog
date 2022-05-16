@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="contents">
+
+    <h1>처음 오셨군요!</h1>
+    <div class="">
+        <div class="">
+            <!--     "/{loginId}/blog"       -->
+            <form th:action="@{~/} + ${#authentication.name} + @{/blog}" method="post">
+
+                <div class="">
+                    <span>블로그 이름</span>
+                    <input type="text" name="blogName" placeholder="블로그 이름을 입력해 주세요.">
+                </div>
+
+                <div class="">
+                    <span>블로그 설명</span>
+                    <input type="text" name="blogDesc" placeholder="블로그 설명을 입력해 주세요.">
+                </div>
+
+                <div class="">
+                    <button>생성</button>
+                    <a href="/">
+                        <button type="button">취소</button>
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

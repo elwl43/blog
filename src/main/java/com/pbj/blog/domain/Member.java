@@ -39,6 +39,9 @@ public class Member implements UserDetails {
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
     private List<Reply> replies = new ArrayList<>();
 
+    @OneToOne(mappedBy = "member")
+    private MyBlog myBlog;
+
     private LocalDateTime regDate = LocalDateTime.now();
     private LocalDateTime updateDate = LocalDateTime.now();
 
@@ -70,6 +73,10 @@ public class Member implements UserDetails {
         this.nickname = nickname;
         this.email = email;
 
+    }
+
+    public void setMyBlog(MyBlog myBlog){
+        this.myBlog = myBlog;
     }
 
     @Override
