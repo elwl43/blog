@@ -39,7 +39,7 @@ public class Reply {
 
     public void modifyReply(ReplyModifyForm replyModifyForm){
 
-        this.body = replyModifyForm.getBody();
+        this.body = replyModifyForm.getUpdateValue();
 
     }
 

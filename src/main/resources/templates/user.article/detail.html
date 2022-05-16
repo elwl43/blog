@@ -4,6 +4,8 @@
       layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="UTF-8">
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>게시글 상세보기</title>
 </head>
 <body>
@@ -87,18 +89,18 @@
 
             <div class="">
 
-                <div th:each="reply : ${replies}">
+                <div th:each="reply : ${replyList}">
                     <span th:text="${reply.body}"></span>
                     <span th:text="${#temporals.format(reply.regDate, 'yyyy-MM-dd')}"></span>
 
-                    <div class="">
-                        <a th:href="@{~/articles/}+${article.id}+@{/replies/}+${reply.id}+@{/delete}">
-                            <button>삭제</button>
-                        </a>
-                    </div>
+                    <button onclick="changeInput(this)" th:attr="onclick=|changeInput(this, ${article.id}, ${reply.id})|">수정</button>
+                    <a th:href="@{~/articles/}+${article.id}+@{/replies/}+${reply.id}+@{/delete}">
+                        <button>삭제</button>
+                    </a>
                 </div>
 
             </div>
+            <script src="/js/replyModify.js"></script>
         </div>
     </div>
 </div>

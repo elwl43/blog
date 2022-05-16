@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
 
@@ -34,11 +35,18 @@ public class ReplyController {
         return "redirect:/articles/" + articleId;
     }
 
+    @ResponseBody
+
     @PostMapping("/articles/{article_id}/replies/{reply_id}/modify")
-    public String modifyReply(@PathVariable(name = "article_id") Long articleId, @PathVariable(name = "reply_id") Long replyId, ReplyModifyForm replyModifyForm, Principal principal){
+    public String modifyReply(@PathVariable(name = "article_id") Long articleId, @PathVariable(name = "reply_id") Long replyId, @RequestBody ReplyModifyForm replyModifyForm, Principal principal){
+
+        System.out.println(articleId);
+        System.out.println(replyId);
 
         Reply findReply = replyService.findById(replyId);
         Article findArticle = articleService.findById(articleId);
+
+        System.out.println("replyModifyForm = " + replyModifyForm.getUpdateValue());
 
         if(!findReply.getMember().getLoginId().equals(principal.getName()) || findReply.getArticle().getId() != findArticle.getId()){
             throw new IllegalStateException("올바르지 않은 접근입니다.");
@@ -46,7 +54,7 @@ public class ReplyController {
 
         replyService.modifyReply(replyModifyForm, findReply);
 
-        return "redirect:/articles/" + articleId;
+        return "성공적으로 수정되었습니다.";
     }
 
     @GetMapping("/articles/{article_id}/replies/{reply_id}/delete")

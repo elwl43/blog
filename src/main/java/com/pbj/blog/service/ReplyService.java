@@ -4,12 +4,15 @@ import com.pbj.blog.dao.ReplyRepository;
 import com.pbj.blog.domain.Article;
 import com.pbj.blog.domain.Member;
 import com.pbj.blog.domain.Reply;
+import com.pbj.blog.dto.reply.ReplyListDTO;
 import com.pbj.blog.dto.reply.ReplyModifyForm;
 import com.pbj.blog.dto.reply.ReplySaveForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -55,5 +58,23 @@ public class ReplyService {
         findMember.getReplies().remove(findReply);
 
         replyRepository.delete(findReply);
+
+    }
+
+    public List<Reply> getAll(){
+        return replyRepository.findAll();
+    }
+
+    public List<ReplyListDTO> getDtoList() {
+
+        List<Reply> replyList = getAll();
+
+        List<ReplyListDTO> replyListDTOList = new ArrayList<>();
+
+        for(Reply reply : replyList){
+            replyListDTOList.add(new ReplyListDTO(reply));
+        }
+
+        return replyListDTOList;
     }
 }

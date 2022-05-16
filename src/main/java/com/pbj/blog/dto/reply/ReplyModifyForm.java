@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ReplyModifyForm {
 
-    private String body;
+    private String updateValue;
 }

@@ -10,6 +10,7 @@ import com.pbj.blog.dto.article.ArticleSaveForm;
 import com.pbj.blog.service.ArticleService;
 import com.pbj.blog.service.CategoryService;
 import com.pbj.blog.service.MemberService;
+import com.pbj.blog.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,8 @@ public class ArticleController {
     private final ArticleService articleService;
     private final MemberService memberService;
     private final CategoryService categoryService;
+    private final ReplyService replyService;
+
 
     @GetMapping("/articles/write")
     public String showWrite(Model model, ArticleSaveForm articleSaveForm){
@@ -110,7 +113,7 @@ public class ArticleController {
         ArticleDTO findArticle = articleService.getArticle(id);
 
         model.addAttribute("article", findArticle);
-        model.addAttribute("replies", findArticle.getReplies());
+        model.addAttribute("replyList", replyService.getDtoList());
 
         return "usr/article/detail";
     }
