@@ -79,6 +79,21 @@ public class ArticleService {
 
     }
 
+    public List<ArticleDTO> getArticleDTOList(){
+
+        List<Article> articleList = articleRepository.findAll();
+
+        List<ArticleDTO> articleListDto = new ArrayList<>();
+
+        for(Article article : articleList){
+            ArticleDTO articleDTO = new ArticleDTO(article);
+            articleListDto.add(articleDTO);
+        }
+
+        return articleListDto;
+
+    }
+
     public ArticleDTO getArticle(Long id) {
 
         Article findArticle = findById(id);

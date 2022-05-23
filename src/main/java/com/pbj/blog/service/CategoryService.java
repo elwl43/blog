@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -82,5 +83,25 @@ public class CategoryService {
         Category findCategory = findById(id);
 
         categoryRepository.delete(findCategory);
+    }
+
+    public CategoryDTO getCategory(String name){
+
+        Category findCategory = findByName(name);
+
+        CategoryDTO categoryDTO = new CategoryDTO(findCategory);
+
+        return categoryDTO;
+
+    }
+
+    public Category findByName(String name){
+
+        Optional<Category> optionalCategory = categoryRepository.findByName(name);
+
+        return optionalCategory.orElseThrow(
+                () -> new NoSuchElementException("해당 카테고리는 존재하지 않습니다.")
+        );
+
     }
 }

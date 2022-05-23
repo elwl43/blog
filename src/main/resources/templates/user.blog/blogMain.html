@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="contents">
+
+  <div class="">
+    <div class="">
+      <span>카테고리</span>
+      <ul th:if="${info.categoryDTOList.size() != 0}">
+        <li th:each="category : ${info.categoryDTOList}">
+          <a th:text="|${category.name}(${category.articleAmount})|" th:href="@{~/b/} + ${loginId} + @{?category=} + ${category.name}"></a>
+        </li>
+      </ul>
+      <ul th:unless="${info.categoryDTOList.size() != 0}">
+        <li>
+          <span>카테고리가 아직 없습니다.</span>
+        </li>
+      </ul>
+      <hr>
+    </div>
+  </div>
+
+  <div class="">
+
+    <span>게시글</span>
+
+    <th:block th:if="${articleList.size() != 0}">
+      <div th:each="article : ${articleList}">
+
+        <div class="article-header">
+          <h1>
+            게시글 제목 : [[${article.title}]]
+          </h1>
+        </div>
+
+        <div class="article-body">
+          <div class="">
+            게시글 작성일 : [[${#temporals.format(article.regDate, 'yyyy-MM-dd')}]]
+          </div>
+          <div class="">
+            게시글 내용 : [[${article.body}]]
+          </div>
+        </div>
+        <hr>
+      </div>
+
+    </th:block>
+    <th:block th:unless="${articleList.size() != 0}">
+      <div class="">
+        <div class="">
+          작성된 게시글이 존재하지 않습니다.
+        </div>
+      </div>
+    </th:block>
+
+  </div>
+
+
+
+</div>
+
+</body>
+</html>
