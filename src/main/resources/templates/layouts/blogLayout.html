@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@2.14.2/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="/css/common.css">
+</head>
+<body>
+
+<header th:replace="fragments/header :: general-header"></header>
+
+<aside th:replace="fragments/sideNav :: blog-side-nav"></aside>
+
+<div class="contents-body" layout:fragment="contents"></div>
+
+</body>
+</html>
