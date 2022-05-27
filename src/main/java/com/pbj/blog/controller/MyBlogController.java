@@ -1,5 +1,6 @@
 package com.pbj.blog.controller;
 
+import com.pbj.blog.dto.myblog.MyBlogMainDTO;
 import com.pbj.blog.dto.myblog.MyBlogSaveForm;
 import com.pbj.blog.service.MyBlogService;
 import lombok.Getter;

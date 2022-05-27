@@ -14,7 +14,6 @@
     </div>
     <div class="flex-none">
       <ul class="menu menu-horizontal p-0 mr-14">
-        <li><a>블로그</a></li>
         <li sec:authorize="isAnonymous()">
           <a th:href="@{~/members/join}">회원가입</a>
           <a th:href="@{~/members/login}">로그인</a>
@@ -26,11 +25,14 @@
           </a>
           <ul class="p-2 bg-base-100">
             <li>
+              <a th:href="@{~/b/} + ${#authentication.name}">블로그</a>
+            </li>
+            <li>
               <a th:href="@{~/articles/write}">게시글 작성</a>
             </li>
-            <!--                        <li>-->
-            <!--                            <a th:href="@{~/member/modify/} + principal.username">회원정보 수정</a>-->
-            <!--                        </li>-->
+            <li>
+              <a th:href="@{~/members/modify/} + ${#authentication.name}">회원정보 수정</a>
+            </li>
             <li>
               <a th:href="@{~/members/logout}">로그아웃</a>
             </li>
