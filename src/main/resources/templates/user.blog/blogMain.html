@@ -21,6 +21,9 @@
       <ul th:unless="${info.categoryDTOList.size() != 0}">
         <li>
           <span>카테고리가 아직 없습니다.</span>
+          <a href="/categories/create">
+            <button>카테고리 생성</button>
+          </a>
         </li>
       </ul>
       <hr>
