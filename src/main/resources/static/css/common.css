@@ -4,11 +4,24 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'paybooc-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body{
-    font-family: 'Eulyoo1945-SemiBold';
+    font-family: 'paybooc-Bold';
 }
 
 .contents-body{
     	min-height: 80vh;
+}
+.common-header {
+    background-color: #F9F3EE;
+}
+
+.error-msg{
+    color: red;
 }

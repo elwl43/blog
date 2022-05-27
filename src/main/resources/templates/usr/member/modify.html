@@ -10,48 +10,52 @@
 <div layout:fragment="contents">
     <div class="">
 
-        <div class="">
+        <div class="flex flex-col">
 
-            <h1>회원정보 수정</h1>
+            <h1 class="flex justify-center text-xl mt-10 font-bold">YBLOG</h1>
 
-            <form th:action="@{~/members/modify/} + ${loginId}" th:object="${memberModifyForm}" method="post">
+            <div class="flex justify-center mt-7">
+                <form th:action="@{~/members/modify/} + ${loginId}" th:object="${memberModifyForm}" method="post" class="border-2 border-red-200 rounded-md p-10 shadow-lg">
 
-                <div class="">
-                    <span>아이디</span>
-                    <input type="text" name="loginId" th:field="*{loginId}" readonly>
-                </div>
+                    <h1 class="flex text-xl mt-2 mb-2 justify-center">회원 정보 수정</h1>
 
-                <div class="">
-                    <span>비밀번호</span>
-                    <input type="password" name="loginPw" th:field="*{loginPw}" th:errorclass="field-error">
-                    <span th:errors="*{loginPw}"></span>
-                </div>
+                    <div class="flex flex-col mb-2">
+                        <span>아이디</span>
+                        <input type="text" name="loginId" th:field="*{loginId}" readonly>
+                    </div>
 
-                <div class="">
-                    <span>이름</span>
-                    <input type="text" name="name" th:field="*{name}" readonly>
-                </div>
+                    <div class="flex flex-col mb-2">
+                        <span class="underline"><b class="text-red-600">* </b>비밀번호</span>
+                        <input type="password" name="loginPw" th:field="*{loginPw}" th:errorclass="field-error" placeholder="수정할 비밀번호">
+                        <span th:errors="*{loginPw}"></span>
+                    </div>
 
-                <div class="">
-                    <span>닉네임</span>
-                    <input type="text" name="nickname" th:field="*{nickname}" th:errorclass="field-error">
-                    <span th:errors="*{nickname}"></span>
-                </div>
+                    <div class="flex flex-col mb-2">
+                        <span>이름</span>
+                        <input type="text" name="name" th:field="*{name}" readonly>
+                    </div>
 
-                <div class="">
-                    <span>이메일</span>
-                    <input type="email" name="email" th:field="*{email}" th:errorclass="field-error">
-                    <span th:errors="*{email}"></span>
-                </div>
+                    <div class="flex flex-col mb-2">
+                        <span class="underline"><b class="text-red-600">* </b>닉네임</span>
+                        <input type="text" name="nickname" th:field="*{nickname}" th:errorclass="field-error">
+                        <span th:errors="*{nickname}"></span>
+                    </div>
 
-                <div class="">
-                    <button>수정</button>
-                    <a href="/">
-                        <button type="button">취소</button>
-                    </a>
-                </div>
+                    <div class="flex flex-col mb-2">
+                        <span class="underline"><b class="text-red-600">* </b>이메일</span>
+                        <input type="email" name="email" th:field="*{email}" th:errorclass="field-error">
+                        <span th:errors="*{email}"></span>
+                    </div>
 
-            </form>
+                    <div class="flex justify-center mt-6">
+                        <button class="btn btn-ghost">수정</button>
+                        <a href="/">
+                            <button class="btn btn-ghost" type="button">취소</button>
+                        </a>
+                    </div>
+
+                </form>
+            </div>
         </div>
     </div>
 </div>
