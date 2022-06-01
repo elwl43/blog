@@ -19,13 +19,14 @@ public class ArticleListDTO {
     private String nickname;
 
     private LocalDateTime regDate;
+    private String category;
 
     public ArticleListDTO(Article article){
         this.id = article.getId();
         this.title = article.getTitle();
         this.nickname = article.getMember().getNickname();
         this.regDate = article.getRegDate();
-
+        this.category = article.getCategory().getName();
     }
 
 }

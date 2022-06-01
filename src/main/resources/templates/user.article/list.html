@@ -12,36 +12,45 @@
 <div class="">
   <div class="">
 
-    <h1>게시글 리스트</h1>
+    <h1 class="mt-7 text-2xl font-bold flex justify-center">전체 게시글 리스트</h1>
 
-    <table>
+    <div class="flex justify-center mt-12">
 
-      <thead>
-      <tr>
-        <th>게시글 제목</th>
-        <th>게시글 작성자</th>
-        <th>게시글 작성일</th>
-      </tr>
-      </thead>
+      <div class="w-9/12 p-4">
 
-      <tbody>
-      <tr th:each="article : ${articles}">
-        <td>
-          <a th:href="@{~/articles/} + ${article.id}">
-            <span th:text="${article.title}"></span>
-          </a>
-        </td>
-        <td>
-          <span th:text="${article.nickname}"></span>
-        </td>
-        <td>
-          <span th:text="${#temporals.format(article.regDate, 'yyyy-MM-dd')}"></span>
-        </td>
-      </tr>
+        <div class="flex flex-col px-10" >
 
-      </tbody>
 
-    </table>
+          <ul class="p-4 w-full border border-1" >
+            <li class="p-4 w-full border border-b" th:each="article : ${articles}">
+              <a th:href="@{~/articles/} + ${article.id}">
+                <div class="flex flex-col justify-start items-start">
+                  <div th:text="${article.title}">
+                    title
+                  </div>
+                  <div>
+                                    <span class="" th:text="${article.category}">
+                                        category
+                                    </span>
+                    <span class="mx-4" th:text="${article.nickname}">
+                                        nickname
+                                    </span>
+                    <span class="mx-4" th:text="${#temporals.format(article.regDate, 'yyyy-MM-dd hh:mm')}">
+                                        regDate
+                                    </span>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
 
   </div>
 </div>

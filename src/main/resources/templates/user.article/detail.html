@@ -14,91 +14,85 @@
     <div class="">
         <div class="">
             <div class="">
-                <h1>게시글 제목 : </h1>
-                <h1 th:text="${article.title}"></h1>
-            </div>
-            <table>
-                <thead>
-                <tr>
-                    <th>게시글 번호</th>
-                    <th>게시글 제목</th>
-                    <th>게시글 내용</th>
-                    <th>게시글 작성자</th>
-                    <th>게시글 작성일</th>
-                    <th>게시글 수정일</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <span th:text="${article.id}"></span>
-                    </td>
-                    <td>
-                        <span th:text="${article.title}"></span>
-                    </td>
-                    <td>
-                        <span th:text="${article.body}"></span>
-                    </td>
-                    <td>
-                        <span th:text="${article.nickname}"></span>
-                    </td>
-                    <td>
-                        <span th:text="${#temporals.format(article.regDate, 'yyyy-MM-dd')}"></span>
-                    </td>
-                    <td>
-                        <span th:text="${#temporals.format(article.updateDate, 'yyyy-MM-dd')}"></span>
-                    </td>
-                    <td>
-                        <div class="">
-                            <a th:href="@{~/articles/modify/} + ${article.id}">
-                                <span>수정</span>
-                            </a>
-                        </div>
-                        <div class="">
-                            <a th:href="@{~/articles/delete/} + ${article.id}">
-                                <span>삭제</span>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <div class="">
-
-
-                <div class="">
-                    <h1 class="text-xl">댓글</h1>
-                </div>
-
-                <hr>
-
-                <form th:action="@{~/articles/} + ${article.id} + @{/replies}" method="post">
+                <div class="img-box">
                     <div class="">
-                        <span>댓글</span>
-                        <input type="text" name="body" placeholder="댓글을 입력해 주세요.">
+                        <img src="/image/brown.png" alt="" class="B-img w-full h-1/5">
                     </div>
                     <div class="">
-                        <button>작성</button>
-                        <a href="/">
-                            <button type="button">취소</button>
+                        <div class="T-img" th:text="${article.title}"></div>
+                    </div>
+
+                    <div class="flex justify-end pr-6">
+                        <span class="mx-4" th:text="${article.nickname}"></span>
+                        <span class="mx-4" th:text="${#temporals.format(article.regDate, 'yyyy-MM-dd')}"></span>
+                        <span class="mx-4" th:text="${#temporals.format(article.updateDate, 'yyyy-MM-dd')}"></span>
+                    </div>
+
+                    <div class="flex justify-center mt-12 text-3xl font-bold">
+                        <span th:text="${article.title}"></span>
+                </div>
+
+                    <div class="flex justify-center">
+                        <div class="flex justify-center mt-12 border border-2 w-3/4 p-6 rounded-md">
+                            <span th:text="${article.body}"></span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-row mt-12 justify-center">
+                        <div class="flex">
+                            <a th:href="@{~/articles/modify/} + ${article.id}">
+                                <button type="button" class="btn btn-ghost">수정</button>
+                            </a>
+                    </div>
+                        <div class="flex">
+                            <a th:href="@{~/articles/delete/} + ${article.id}">
+                                <button type="button" class="btn btn-ghost mx-4">삭제</button>
                         </a>
                     </div>
-                </form>
-            </div>
-            <hr>
-
-            <div class="">
-
-                <div th:each="reply : ${replyList}">
-                    <span th:text="${reply.body}"></span>
-                    <span th:text="${#temporals.format(reply.regDate, 'yyyy-MM-dd')}"></span>
-
-                    <button th:if="${#authentication.name.equals(reply.loginId)}" onclick="changeInput(this)" th:attr="onclick=|changeInput(this, ${article.id}, ${reply.id})|">수정</button>
-                    <a th:href="@{~/articles/}+${article.id}+@{/replies/}+${reply.id}+@{/delete}">
-                        <button th:if="${#authentication.name.equals(reply.loginId)}" >삭제</button>
-                    </a>
                 </div>
+            </div>
+                <div class="flex justify-center mt-20">
+                    <div class="flex flex-col w-3/4">
+
+                        <div class="flex w-full justify-center">
+                            <form th:action="@{~/articles/} + ${article.id} + @{/replies}" method="post" class="flex flex-row items-center">
+                                <div class="flex">
+                                    <span>😁댓글 작성하기😁</span>
+                                    <input type="text" name="body" placeholder="댓글을 입력해 주세요." class="mx-4 border border-2 rounded-md p-2">
+                                </div>
+                                <div class="flex pr-6 mx-4">
+                                    <button class="btn btn-ghost p-2">작성</button>
+                                    <a href="/">
+                                        <button class="btn btn-ghost p-2 mx-2" type="button">취소</button>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="mb-4">
+                        </div>
+                        <hr>
+                        <div class="flex flex-col justify-center mt-6 mb-20">
+
+                            <th:block th:each="reply : ${replyList}">
+                                <div class="flex flex-row">
+                                    <div class="flex items-center">
+                                        <span th:text="${reply.body}"></span>
+                                        <span class="mx-4" th:text="${#temporals.format(reply.regDate, 'yyyy-MM-dd')}"></span>
+                                        <button class="btn btn-ghost mx-2 p-2" th:if="${#authentication.name.equals(reply.loginId)}" onclick="changeInput(this)" th:attr="onclick=|changeInput(this, ${article.id}, ${reply.id})|">수정</button>
+                                    </div>
+                                    <div class="flex">
+                                        <a th:href="@{~/articles/}+${article.id}+@{/replies/}+${reply.id}+@{/delete}">
+                                            <button class="btn btn-ghost p-2" th:if="${#authentication.name.equals(reply.loginId)}" >삭제</button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </th:block>
+
+
+                        </div>
+                    </div>
 
             </div>
             <script src="/js/replyModify.js"></script>

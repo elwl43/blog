@@ -27,7 +27,7 @@
 
                 <div class="flex flex-col mb-4 w-3/12">
                     <span>제목</span>
-                    <input type="text" name="title" th:field="*{title}" th:errorclass="field-error">
+                    <input class="border border-2 rounded-md" type="text" name="title" th:field="*{title}" th:errorclass="field-error">
                     <span th:errors="*{title}"></span>
                 </div>
 

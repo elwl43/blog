@@ -21,29 +21,29 @@
 
                     <div class="flex flex-col mb-2">
                         <span>아이디</span>
-                        <input type="text" name="loginId" th:field="*{loginId}" readonly>
+                        <input class="border border-2 rounded-md p-2" type="text" name="loginId" th:field="*{loginId}" readonly>
                     </div>
 
                     <div class="flex flex-col mb-2">
-                        <span class="underline"><b class="text-red-600">* </b>비밀번호</span>
-                        <input type="password" name="loginPw" th:field="*{loginPw}" th:errorclass="field-error" placeholder="수정할 비밀번호">
+                        <span><b class="text-red-600">* </b>비밀번호</span>
+                        <input class="border border-2 rounded-md p-2" type="password" name="loginPw" th:field="*{loginPw}" th:errorclass="field-error" placeholder="수정할 비밀번호">
                         <span th:errors="*{loginPw}"></span>
                     </div>
 
                     <div class="flex flex-col mb-2">
                         <span>이름</span>
-                        <input type="text" name="name" th:field="*{name}" readonly>
+                        <input class="border border-2 rounded-md p-2"  type="text" name="name" th:field="*{name}" readonly>
                     </div>
 
                     <div class="flex flex-col mb-2">
-                        <span class="underline"><b class="text-red-600">* </b>닉네임</span>
-                        <input type="text" name="nickname" th:field="*{nickname}" th:errorclass="field-error">
+                        <span><b class="text-red-600">* </b>닉네임</span>
+                        <input class="border border-2 rounded-md p-2" type="text" name="nickname" th:field="*{nickname}" th:errorclass="field-error">
                         <span th:errors="*{nickname}"></span>
                     </div>
 
                     <div class="flex flex-col mb-2">
-                        <span class="underline"><b class="text-red-600">* </b>이메일</span>
-                        <input type="email" name="email" th:field="*{email}" th:errorclass="field-error">
+                        <span><b class="text-red-600">* </b>이메일</span>
+                        <input class="border border-2 rounded-md p-2" type="email" name="email" th:field="*{email}" th:errorclass="field-error">
                         <span th:errors="*{email}"></span>
                     </div>
 

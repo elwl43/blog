@@ -23,7 +23,7 @@
 
                 <div class="flex flex-col mb-4 w-3/12">
                     <span>제목</span>
-                    <input type="text" name="title" placeholder="제목을 입력해 주세요." th:field="*{title}" th:errorclass="field-error">
+                    <input class="border border-2 rounded-md p-2" type="text" name="title" placeholder="제목을 입력해 주세요." th:field="*{title}" th:errorclass="field-error">
                     <span th:errors="*{title}"></span>
                 </div>
 
@@ -36,7 +36,7 @@
                 <div class="flex justify-center mt-12">
                     <button class="btn btn-ghost">작성</button>
                     <a href="/">
-                        <button class="btn btn-ghost" type="button">취소</button>
+                        <button class="btn btn-ghost mx-4" type="button">취소</button>
                     </a>
                 </div>
 
