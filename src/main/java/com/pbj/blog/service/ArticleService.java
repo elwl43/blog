@@ -111,4 +111,8 @@ public class ArticleService {
         articleRepository.delete(findArticle);
 
     }
+
+    public Long articleCount(){
+        return articleRepository.count();
+    }
 }

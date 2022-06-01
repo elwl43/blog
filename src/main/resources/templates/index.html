@@ -23,6 +23,39 @@
             <button>카테고리 생성</button>
         </a>
     </div>
+
+    <div class="mt-12">
+
+    </div>
+
+    <div class="container mx-auto">
+        <div class="flex justify-start flex-row">
+
+            <div class="mx-12">
+                <span>총 게시글 ([[${articleCount}]])</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto mt-6">
+        <div class="">
+            <div class="flex flex-wrap flex-row justify-center" >
+                <div class="mx-4 mt-4 card w-96 bg-base-100 shadow-xl flex " th:each="article : ${articles}">
+                    <figure class="px-10 pt-10">
+                        <img src="https://api.lorem.space/image/shoes?w=400&h=225" alt="Shoes" class="rounded-xl" />
+                    </figure>
+                    <div class="card-body items-center text-center">
+                        <h2 class="card-title" th:text="${article.title}">Shoes!</h2>
+                        <p th:text="${article.nickname}"></p>
+                        <p th:text="${article.regDate}"></p>
+                        <a th:href="@{~/articles/} + ${article.id}" class="card-actions">
+                            <button class="btn btn-ghost">자세히 보기</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
