@@ -79,4 +79,12 @@ public class MyBlogService {
         return articleList;
 
     }
+    public List<ArticleDTO> getArticleByLoginId(String loginId){
+
+        Member findMember = memberService.findByLoginId(loginId);
+
+        List<ArticleDTO> articles = articleService.getArticleDtoList(findMember.getArticles());
+
+        return articles;
+    }
 }

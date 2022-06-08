@@ -22,6 +22,7 @@ import java.util.Optional;
 public class ReplyService {
 
     private final ReplyRepository replyRepository;
+    private final ArticleService articleService;
 
     @Transactional
     public void writeReply(ReplySaveForm replySaveForm, Member findMember, Article findArticle) {
@@ -65,9 +66,10 @@ public class ReplyService {
         return replyRepository.findAll();
     }
 
-    public List<ReplyListDTO> getDtoList() {
+    public List<ReplyListDTO> getDtoList(Long id) {
 
-        List<Reply> replyList = getAll();
+        Article findArticle = articleService.findById(id);
+        List<Reply> replyList = findArticle.getReplies();
 
         List<ReplyListDTO> replyListDTOList = new ArrayList<>();
 

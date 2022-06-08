@@ -5,6 +5,20 @@
     <title>Title</title>
 </head>
 <aside th:fragment="blog-side-nav">
-    <nav></nav>
-</aside>
+    <ul class="menu bg-base-100 w-56 p-2 rounded-box" th:if="${info.categoryDTOList.size() != 0}">
+        <li class="menu-title">
+            <span>Category</span>
+        </li>
+        <li th:each="category : ${info.categoryDTOList}">
+            <a th:text="|${category.name}(${category.articleAmount})|" th:href="@{~/b/} + ${loginId} + @{?category=} + ${category.name}">Item 1</a>
+        </li>
+    </ul>
+    <ul class="menu bg-base-100 w-56 p-2 rounded-box" th:unless="${info.categoryDTOList.size() != 0}">
+        <li class="menu-title">
+            <span>Category</span>
+        </li>
+        <li>
+            <span>카테고리가 아직 없습니다.</span>
+        </li>
+    </ul></aside>
 </html>

@@ -10,48 +10,32 @@
 
 <div layout:fragment="contents">
 
-  <div class="">
-    <div class="">
-      <span>카테고리</span>
-      <ul th:if="${info.categoryDTOList.size() != 0}">
-        <li th:each="category : ${info.categoryDTOList}">
-          <a th:text="|${category.name}(${category.articleAmount})|" th:href="@{~/b/} + ${loginId} + @{?category=} + ${category.name}"></a>
-        </li>
-      </ul>
-      <ul th:unless="${info.categoryDTOList.size() != 0}">
-        <li>
-          <span>카테고리가 아직 없습니다.</span>
-          <a href="/categories/create">
-            <button>카테고리 생성</button>
-          </a>
-        </li>
-      </ul>
-      <hr>
-    </div>
-  </div>
+  <div class="container mx-auto p-4">
 
-  <div class="">
 
-    <span>게시글</span>
+  <th:block th:if="${articleList.size() != 0}">
+    <div class="container mx-auto mb-20" th:each="article : ${articleList}">
 
-    <th:block th:if="${articleList.size() != 0}">
-      <div th:each="article : ${articleList}">
-
+      <div class="container mx-auto">
         <div class="article-header">
-          <h1>
-            게시글 제목 : [[${article.title}]]
-          </h1>
-        </div>
+          <a th:href="@{~/articles/} + ${article.id}">
+            <h1 class="font-bold text-4xl">
+              [[${article.title}]]
+            </h1>
+          </a>
+          </div>
+        <div class="divider"></div>
 
         <div class="article-body">
-          <div class="">
-            게시글 작성일 : [[${#temporals.format(article.regDate, 'yyyy-MM-dd')}]]
+          <div class="text-sm flex items-end justify-end">
+            [[${#temporals.format(article.regDate, 'yyyy-MM-dd')}]]
           </div>
-          <div class="">
-            게시글 내용 : [[${article.body}]]
+          <div class="text-lg flex w-full">
+            [[${article.body}]]
+          </div>
           </div>
         </div>
-        <hr>
+
       </div>
 
     </th:block>
